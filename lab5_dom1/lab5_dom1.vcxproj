@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <MASM Include="functions.asm" />
+    <MASM Include="xmm_functions.asm" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
