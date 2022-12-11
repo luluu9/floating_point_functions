@@ -4,6 +4,7 @@ float avg_harm(float* arr, unsigned int n);
 float exp_sum(float x); // calculates 1 + x/1 + x^2/1*2 + x^3/1*2*3 + ... up to x^19
 
 void sum_vectors(float*, float*, float*);
+void int2float(int* integer, float* floatpoint);
 
 float exp_sum_c(float x) {
 	float result = 1;
@@ -32,5 +33,10 @@ int main() {
 	char numbers_B[16] = { -3, -3, -3, -3, -3, -3, -3, -3, 3, 3, 3, 3, 3, 3, 3, 3 };
 	char result[16] = { -3, -3, -3, -3, -3, -3, -3, -3, 3, 3, 3, 3, 3, 3, 3, 3 };
 	sum_vectors(result, numbers_A, numbers_B);
+
+	int integers[2] = { -17, 24 };
+	float results[4];
+	int2float(integers, results);
+	printf("\Conversion: %f %f\n", results[0], results[1]);
 	return 0;
 }

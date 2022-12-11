@@ -1,7 +1,10 @@
 .686
 .model flat
 .XMM
+
 public _sum_vectors
+public _int2float
+
 .code
 
 ; function sums two arrays containing sixteen 4-bit chars vertically, e.g. results[0]=arr1[0]+arr2[0]
@@ -28,5 +31,25 @@ _sum_vectors proc
 	pop ebp
 	ret
 _sum_vectors endp
+
+; ebp+12: floats array
+; ebp+8: integer array
+; ebp+4: call address
+; ebp: ebp
+_int2float proc
+	push ebp
+	mov ebp, esp
+	
+	mov eax, [ebp+8] ; integer ptr
+	mov ebx, [ebp+12] ; floats ptr
+
+	; this instructions converts only two integers (2x32-bits) to floats
+	; so second 64-bits is not used
+	cvtpi2ps xmm0, QWORD PTR [eax] 
+	movups [ebx], xmm0
+
+	pop ebp
+	ret
+_int2float endp
 
 end
